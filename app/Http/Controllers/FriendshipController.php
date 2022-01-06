@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Notifications\Friendship\AcceptNotifiation;
+use App\Notifications\Friendship\NewRequestNotifiation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 
@@ -76,18 +78,21 @@ class FriendshipController extends Controller
 
         if ($user->hasRequestAsFriend($me)) {
             $me->accept($user);
-
+            $user->notify(new AcceptNotifiation($me));
             return back();
         }
 
         $me->request($user);
+        $user->notify(new NewRequestNotifiation($me));
 
         return back();
     }
 
     public function accept(User $user)
     {
-        auth()->user()->accept($user);
+        $me = auth()->user();
+        $me->accept($user);
+        $user->notify(new AcceptNotifiation($me));
 
         return back();
     }
