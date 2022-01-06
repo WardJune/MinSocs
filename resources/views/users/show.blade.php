@@ -63,7 +63,8 @@
                                     ? 'fas'
                                     : 'far' }} fa-heart"></i>
                             {{ $post->likesCount() }}</a>
-                        <a href="" class="link-warning text-decoration-none"><i class="far fa-comment-alt mx-1"></i> 32</a>
+                        <a class="link-warning text-decoration-none"><i class="far fa-comment-alt mx-1"></i>
+                            {{ $post->commentsCount() }}</a>
                         <a href="" class="link-warning text-decoration-none"><i class="far fa-share-square"></i></a>
                     </div>
                 </div>

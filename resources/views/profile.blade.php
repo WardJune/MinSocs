@@ -24,7 +24,9 @@
                         <span class="text-muted">{{ $post->created_at->format('d M y') }}</span>
                     </div>
                     <div class="post-content">
-                        {{ $post->content }}
+                        <a href="{{ route('posts.show', $post->id) }}" class="text-light text-decoration-none">
+                            {{ $post->content }}
+                        </a>
                     </div>
                     <div class="post-icons mt-1 d-flex justify-content-around">
                         <a href="{{ route('posts.like', $post->id) }}" class="link-warning text-decoration-none"><i
@@ -32,7 +34,8 @@
                                     ? 'fas'
                                     : 'far' }} fa-heart"></i>
                             {{ $post->likesCount() }}</a>
-                        <a href="" class="link-warning text-decoration-none"><i class="far fa-comment-alt mx-1"></i> 32</a>
+                        <a class="link-warning text-decoration-none"><i class="far fa-comment-alt mx-1"></i>
+                            {{ $post->commentsCount() }}</a>
                         <a href="" class="link-warning text-decoration-none"><i class="far fa-share-square"></i></a>
                     </div>
                 </div>

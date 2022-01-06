@@ -28,7 +28,7 @@
             <!--Left Menu block-->
             <div class='sticky-top vh-100 col-md-3 px-5 pt-3 d-flex flex-column justify-content-between'>
                 <div class="top">
-                    <a href="{{ route('home') }}" class="navbar-brand link-light fw-bold">Mini Socs</a>
+                    <a href="{{ route('home') }}" class="navbar-brand link-light fw-bold">MinSocs</a>
                     <ul class="nav flex-column fs-5 mt-2 font-weight-light">
                         <li class="nav-item">
                             <a class="nav-link link-light active" href="{{ route('home') }}"><i

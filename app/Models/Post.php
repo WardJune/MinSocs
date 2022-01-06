@@ -10,7 +10,7 @@ class Post extends Model
     use HasFactory;
 
     protected $fillable = ['user_id', 'content'];
-    protected $withCount = ['likes'];
+    protected $withCount = ['likes', 'comments'];
 
     public function user()
     {
@@ -29,5 +29,19 @@ class Post extends Model
         }
 
         return $this->likes_count;
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function commentsCount()
+    {
+        if ($this->comments_count == 0) {
+            return '';
+        }
+
+        return $this->comments_count;
     }
 }

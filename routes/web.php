@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\FriendshipController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LikeController;
@@ -31,6 +32,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('posts', [PostController::class, 'store'])->name('posts.create');
     Route::get('posts/{post:id}', [PostController::class, 'show'])->name('posts.show');
     Route::get('posts/like/{post:id}', [LikeController::class, 'like'])->name('posts.like');
+
+    Route::post('posts/comment/{post:id}', [CommentController::class, 'store'])->name('comment.create');
 
     Route::get('users/{user:id}', [UserController::class, 'show'])->name('users.show');
 
