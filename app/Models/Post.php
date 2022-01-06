@@ -10,6 +10,7 @@ class Post extends Model
     use HasFactory;
 
     protected $fillable = ['user_id', 'content'];
+    protected $withCount = ['likes'];
 
     public function user()
     {
@@ -19,5 +20,14 @@ class Post extends Model
     public function likes()
     {
         return $this->belongsToMany(User::class, 'likes', 'post_id', 'user_id');
+    }
+
+    public function likesCount()
+    {
+        if ($this->likes_count == 0) {
+            return '';
+        }
+
+        return $this->likes_count;
     }
 }

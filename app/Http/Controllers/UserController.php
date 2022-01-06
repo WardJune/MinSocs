@@ -10,7 +10,7 @@ class UserController extends Controller
     public function show(User $user)
     {
         if ($user == auth()->user()) {
-            return redirect()->route('friends');
+            return redirect()->route('profile');
         }
 
         $user = $user->load('posts');

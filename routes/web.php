@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\FriendshipController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -28,6 +29,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('profile', [ProfileController::class, 'index'])->name('profile');
 
     Route::post('posts', [PostController::class, 'store'])->name('posts.create');
+    Route::get('posts/{post:id}', [PostController::class, 'show'])->name('posts.show');
+    Route::get('posts/like/{post:id}', [LikeController::class, 'like'])->name('posts.like');
 
     Route::get('users/{user:id}', [UserController::class, 'show'])->name('users.show');
 

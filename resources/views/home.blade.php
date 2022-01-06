@@ -21,20 +21,30 @@
     <!--posts-->
     <section class="posts mt-3">
         <!--1 post-->
-        <div class="border border-secondary border-start-0 border-end-0 py-2">
+        <div class="border border-secondary border-start-0 border-bottom-0 border-end-0 py-2">
             @foreach ($posts as $post)
                 <div class="post-box px-4 py-2 border-bottom border-secondary">
                     <div class="top">
-                        <strong>{{ $post->user->name }}</strong>
-                        <span class="text-muted"> {{ $post->user->email }}</span> &#x2022
+                        <a href="{{ route('users.show', $post->user->id) }}" class="link-light text-decoration-none">
+                            <strong>{{ $post->user->name }}</strong>
+                            <span class="text-muted"> {{ $post->user->email }}</span>
+                        </a>
+                        &#x2022
                         <span class="text-muted">{{ $post->created_at->format('d M y') }}</span>
                     </div>
                     <div class="post-content">
-                        {{ $post->content }}
+                        <a href="{{ route('posts.show', $post->id) }}" class="text-light text-decoration-none">
+                            {{ $post->content }}
+                        </a>
                     </div>
                     <div class="post-icons mt-1 d-flex justify-content-around">
-                        <a href="" class="link-warning text-decoration-none"><i class="far fa-heart"></i> 12</a>
-                        <a href="" class="link-warning text-decoration-none"><i class="far fa-comment-alt mx-1"></i> 32</a>
+                        <a href="{{ route('posts.like', $post->id) }}" class="link-warning text-decoration-none"><i
+                                class="{{ auth()->user()->liked($post)
+                                    ? 'fas'
+                                    : 'far' }} fa-heart"></i>
+                            {{ $post->likesCount() }}</a>
+                        <a href="" class="link-warning text-decoration-none"><i class="far fa-comment-alt mx-1"></i>
+                            32</a>
                         <a href="" class="link-warning text-decoration-none"><i class="far fa-share-square"></i></a>
                     </div>
                 </div>

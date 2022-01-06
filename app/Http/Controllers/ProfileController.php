@@ -9,7 +9,8 @@ class ProfileController extends Controller
 {
     public function index()
     {
-        $posts = Post::whereUserId(auth()->user()->id)
+        $posts = Post::with('user')
+            ->whereUserId(auth()->user()->id)
             ->latest()
             ->get();
 
